@@ -1,6 +1,6 @@
 Package: xtune
-Title: Regularized Regression with Feature-specific Penalties Integrating External Information
-Version: 1.0.0
+Title: Regularized Regression with Feature-Specific Penalties Integrating External Information
+Version: 2.0.0
 Authors@R: 
   c(person(given = "Jingxuan",
            family = "He",
