@@ -1,6 +1,6 @@
 #' @import lbfgs
 
-set.seed(1234)
+set.seed(123456)
 test_that("estimates by empirical bayes tuning and lbfgs direct update match, single tuning parameters", {
   n = 30
   p = 50

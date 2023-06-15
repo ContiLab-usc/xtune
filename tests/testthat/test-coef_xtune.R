@@ -1,4 +1,4 @@
-set.seed(1234)
+set.seed(123456)
 
 test_that("test for coef",{
   X <- matrix(runif(30), ncol = 3)

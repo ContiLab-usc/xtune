@@ -130,6 +130,10 @@ xtune <- function(X, Y, Z = NULL,U = NULL,
                 } else {
                         dat_ext <- Z
                 }
+
+                if (message == TRUE){
+                        cat(paste("Z provided, start estimating individual tuning parameters","\n"))
+                }
         }
 
 
@@ -170,12 +174,6 @@ xtune <- function(X, Y, Z = NULL,U = NULL,
         # check control object
         control <- do.call("xtune.control", control)
         control <- initialize_control(control, dat_ext)
-
-        if (nex > 1) {
-                if (message == TRUE){
-                        cat(paste("Z provided, start estimating individual tuning parameters","\n"))
-                }
-        }
 
         # core function
         if(family == "linear"){
