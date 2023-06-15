@@ -17,13 +17,13 @@ status](https://github.com/rossellhayes/ipa/workflows/R-CMD-check/badge.svg)](ht
 ### Motivation
 
 In standard regularized regression (Lasso, Ridge, and Elastic-net), a
-single penalty parameter \(\lambda\) applied equally to all regression
+single penalty parameter $\lambda$ applied equally to all regression
 coefficients to control the amount of regularization in the model.
 
 Better prediction accuracy may be achieved by allowing a **differential
 amount of shrinkage**. Ideally, we want to give a small penalty to
 important features and a large penalty to unimportant features. We guide
-the penalized regression model with external data \(**Z**\) that are
+the penalized regression model with external data **$Z$**  that are
 potentially informative for the importance/effect size of coefficients
 and allow feature-specific shrinkage modeled as a log-linear function of
 the external data.
@@ -31,26 +31,34 @@ the external data.
 The objective function of feature-specific shrinkage integrating
 external information is:
 
-\[\min_f \sum_{i = 1}^n &V(f(x_i), y_i) + \textcolor{red}{\bm\lambda} R(f)\]
-\[\textcolor{red}{\bm\lambda = e^{\bm Z \cdot \bm \alpha}}\]
 
-where \(V\) represents loss function, \(\lambda\) is the penalty/tuning
-parameter, and \(R(f)\) is the regularization/penalty term.
+
+```math
+\min_f \sum_{i = 1}^n V(f(x_i), y_i) + \textcolor{red}{\lambda} R(f)
+```
+
+
+```math
+\textcolor{red}{\lambda = e^{Z \cdot \alpha}}
+```
+
+where $V$ represents loss function, $\lambda$ is the penalty/tuning
+parameter, and $R(f)$ is the regularization/penalty term.
 Specifically, we use Elastic-net type of penalty:
 
-\[R(f) = \left[\sum_{k = 1}^K\bigg((1-c)||\beta_k||_2^2/2 + c||\beta_k||_1 \bigg) \right]\]
+$$R(f) = \left[\sum_{k = 1}^K\bigg((1-c)||\beta_k||_2^2/2 + c||\beta_k||_1 \bigg) \right]$$
 
-when \(c = 1, 0\) or any value between 0 to 1, the model is equivalent
+when $c = 1, 0$ or any value between 0 to 1, the model is equivalent
 to LASSO, Ridge, and Elastic-net, respectively.
 
 The idea of external data is that it provides us information on the
 importance/effect size of regression coefficients. It could be any
 nominal or quantitative feature-specific information, such as the
 grouping of predictors, prior knowledge of biological importance,
-external p-values, function annotations, etc. Each column of Z is a
-variable for features in design matrix X. Z is of dimension
-\(p \times q\), where \(p\) is the number of features and \(q\) is the
-number of variables in \(Z\).
+external p-values, function annotations, etc. Each column of **$Z$** is a
+variable for features in design matrix **$X$**. **$Z$** is of dimension
+$p \times q$, where $p$ is the number of features and $q$ is the
+number of variables in **$Z$**.
 
 ### Tuning multiple penalty parameters
 
@@ -95,14 +103,14 @@ library(xtune)
 
 ## ✍ Citation
 
-  - **`xtune` LASSO**: Zeng, Chubing, Duncan Campbell Thomas, and Juan
+  - **xtune LASSO**: Zeng, Chubing, Duncan Campbell Thomas, and Juan
     Pablo Lewinger. “Incorporating prior knowledge into regularized
     regression.” Bioinformatics 37.4 (2021): 514-521.
 
-  - **`xtune` classification with Elastic-net type of penalty**: paper
+  - **xtune classification with Elastic-net type of penalty**: paper
     coming soon
 
-  - **`xtune`** package:
+  - **xtune package**:
 
 <!-- end list -->
 
@@ -208,268 +216,7 @@ xtune.fit <- xtune(example$X,example$Y,example$Z, family = "linear")
 #> #-----------------Inner loop Iteration 6 Done-----------------#
 #> #-----------------Inner loop Iteration 7 Done-----------------#
 #> Difference between alpha_old and alpha_new: 2.281027 
-#> Start estimating alpha:
-#> #-----------------Inner loop Iteration 1 Done-----------------#
-#> #-----------------Inner loop Iteration 2 Done-----------------#
-#> #-----------------Inner loop Iteration 3 Done-----------------#
-#> #-----------------Inner loop Iteration 4 Done-----------------#
-#> #-----------------Inner loop Iteration 5 Done-----------------#
-#> #-----------------Inner loop Iteration 6 Done-----------------#
-#> #-----------------Inner loop Iteration 7 Done-----------------#
-#> #-----------------Inner loop Iteration 8 Done-----------------#
-#> #-----------------Inner loop Iteration 9 Done-----------------#
-#> #-----------------Inner loop Iteration 10 Done-----------------#
-#> #-----------------Inner loop Iteration 11 Done-----------------#
-#> #-----------------Inner loop Iteration 12 Done-----------------#
-#> Difference between alpha_old and alpha_new: 1.644838 
-#> Start estimating alpha:
-#> #-----------------Inner loop Iteration 1 Done-----------------#
-#> #-----------------Inner loop Iteration 2 Done-----------------#
-#> #-----------------Inner loop Iteration 3 Done-----------------#
-#> #-----------------Inner loop Iteration 4 Done-----------------#
-#> #-----------------Inner loop Iteration 5 Done-----------------#
-#> #-----------------Inner loop Iteration 6 Done-----------------#
-#> #-----------------Inner loop Iteration 7 Done-----------------#
-#> #-----------------Inner loop Iteration 8 Done-----------------#
-#> #-----------------Inner loop Iteration 9 Done-----------------#
-#> #-----------------Inner loop Iteration 10 Done-----------------#
-#> #-----------------Inner loop Iteration 11 Done-----------------#
-#> #-----------------Inner loop Iteration 12 Done-----------------#
-#> #-----------------Inner loop Iteration 13 Done-----------------#
-#> #-----------------Inner loop Iteration 14 Done-----------------#
-#> #-----------------Inner loop Iteration 15 Done-----------------#
-#> #-----------------Inner loop Iteration 16 Done-----------------#
-#> #-----------------Inner loop Iteration 17 Done-----------------#
-#> #-----------------Inner loop Iteration 18 Done-----------------#
-#> #-----------------Inner loop Iteration 19 Done-----------------#
-#> #-----------------Inner loop Iteration 20 Done-----------------#
-#> #-----------------Inner loop Iteration 21 Done-----------------#
-#> #-----------------Inner loop Iteration 22 Done-----------------#
-#> #-----------------Inner loop Iteration 23 Done-----------------#
-#> #-----------------Inner loop Iteration 24 Done-----------------#
-#> #-----------------Inner loop Iteration 25 Done-----------------#
-#> #-----------------Inner loop Iteration 26 Done-----------------#
-#> #-----------------Inner loop Iteration 27 Done-----------------#
-#> Difference between alpha_old and alpha_new: 1.748437 
-#> Start estimating alpha:
-#> #-----------------Inner loop Iteration 1 Done-----------------#
-#> #-----------------Inner loop Iteration 2 Done-----------------#
-#> #-----------------Inner loop Iteration 3 Done-----------------#
-#> #-----------------Inner loop Iteration 4 Done-----------------#
-#> #-----------------Inner loop Iteration 5 Done-----------------#
-#> #-----------------Inner loop Iteration 6 Done-----------------#
-#> #-----------------Inner loop Iteration 7 Done-----------------#
-#> #-----------------Inner loop Iteration 8 Done-----------------#
-#> #-----------------Inner loop Iteration 9 Done-----------------#
-#> #-----------------Inner loop Iteration 10 Done-----------------#
-#> #-----------------Inner loop Iteration 11 Done-----------------#
-#> #-----------------Inner loop Iteration 12 Done-----------------#
-#> #-----------------Inner loop Iteration 13 Done-----------------#
-#> #-----------------Inner loop Iteration 14 Done-----------------#
-#> #-----------------Inner loop Iteration 15 Done-----------------#
-#> #-----------------Inner loop Iteration 16 Done-----------------#
-#> #-----------------Inner loop Iteration 17 Done-----------------#
-#> #-----------------Inner loop Iteration 18 Done-----------------#
-#> #-----------------Inner loop Iteration 19 Done-----------------#
-#> #-----------------Inner loop Iteration 20 Done-----------------#
-#> #-----------------Inner loop Iteration 21 Done-----------------#
-#> #-----------------Inner loop Iteration 22 Done-----------------#
-#> #-----------------Inner loop Iteration 23 Done-----------------#
-#> #-----------------Inner loop Iteration 24 Done-----------------#
-#> #-----------------Inner loop Iteration 25 Done-----------------#
-#> #-----------------Inner loop Iteration 26 Done-----------------#
-#> #-----------------Inner loop Iteration 27 Done-----------------#
-#> #-----------------Inner loop Iteration 28 Done-----------------#
-#> #-----------------Inner loop Iteration 29 Done-----------------#
-#> #-----------------Inner loop Iteration 30 Done-----------------#
-#> #-----------------Inner loop Iteration 31 Done-----------------#
-#> #-----------------Inner loop Iteration 32 Done-----------------#
-#> #-----------------Inner loop Iteration 33 Done-----------------#
-#> #-----------------Inner loop Iteration 34 Done-----------------#
-#> #-----------------Inner loop Iteration 35 Done-----------------#
-#> #-----------------Inner loop Iteration 36 Done-----------------#
-#> #-----------------Inner loop Iteration 37 Done-----------------#
-#> #-----------------Inner loop Iteration 38 Done-----------------#
-#> #-----------------Inner loop Iteration 39 Done-----------------#
-#> #-----------------Inner loop Iteration 40 Done-----------------#
-#> #-----------------Inner loop Iteration 41 Done-----------------#
-#> #-----------------Inner loop Iteration 42 Done-----------------#
-#> #-----------------Inner loop Iteration 43 Done-----------------#
-#> #-----------------Inner loop Iteration 44 Done-----------------#
-#> #-----------------Inner loop Iteration 45 Done-----------------#
-#> #-----------------Inner loop Iteration 46 Done-----------------#
-#> #-----------------Inner loop Iteration 47 Done-----------------#
-#> #-----------------Inner loop Iteration 48 Done-----------------#
-#> #-----------------Inner loop Iteration 49 Done-----------------#
-#> #-----------------Inner loop Iteration 50 Done-----------------#
-#> #-----------------Inner loop Iteration 51 Done-----------------#
-#> #-----------------Inner loop Iteration 52 Done-----------------#
-#> #-----------------Inner loop Iteration 53 Done-----------------#
-#> #-----------------Inner loop Iteration 54 Done-----------------#
-#> #-----------------Inner loop Iteration 55 Done-----------------#
-#> #-----------------Inner loop Iteration 56 Done-----------------#
-#> #-----------------Inner loop Iteration 57 Done-----------------#
-#> #-----------------Inner loop Iteration 58 Done-----------------#
-#> #-----------------Inner loop Iteration 59 Done-----------------#
-#> #-----------------Inner loop Iteration 60 Done-----------------#
-#> #-----------------Inner loop Iteration 61 Done-----------------#
-#> #-----------------Inner loop Iteration 62 Done-----------------#
-#> #-----------------Inner loop Iteration 63 Done-----------------#
-#> #-----------------Inner loop Iteration 64 Done-----------------#
-#> #-----------------Inner loop Iteration 65 Done-----------------#
-#> #-----------------Inner loop Iteration 66 Done-----------------#
-#> #-----------------Inner loop Iteration 67 Done-----------------#
-#> #-----------------Inner loop Iteration 68 Done-----------------#
-#> #-----------------Inner loop Iteration 69 Done-----------------#
-#> #-----------------Inner loop Iteration 70 Done-----------------#
-#> #-----------------Inner loop Iteration 71 Done-----------------#
-#> #-----------------Inner loop Iteration 72 Done-----------------#
-#> #-----------------Inner loop Iteration 73 Done-----------------#
-#> #-----------------Inner loop Iteration 74 Done-----------------#
-#> #-----------------Inner loop Iteration 75 Done-----------------#
-#> #-----------------Inner loop Iteration 76 Done-----------------#
-#> #-----------------Inner loop Iteration 77 Done-----------------#
-#> #-----------------Inner loop Iteration 78 Done-----------------#
-#> #-----------------Inner loop Iteration 79 Done-----------------#
-#> #-----------------Inner loop Iteration 80 Done-----------------#
-#> #-----------------Inner loop Iteration 81 Done-----------------#
-#> #-----------------Inner loop Iteration 82 Done-----------------#
-#> #-----------------Inner loop Iteration 83 Done-----------------#
-#> #-----------------Inner loop Iteration 84 Done-----------------#
-#> #-----------------Inner loop Iteration 85 Done-----------------#
-#> #-----------------Inner loop Iteration 86 Done-----------------#
-#> #-----------------Inner loop Iteration 87 Done-----------------#
-#> #-----------------Inner loop Iteration 88 Done-----------------#
-#> #-----------------Inner loop Iteration 89 Done-----------------#
-#> #-----------------Inner loop Iteration 90 Done-----------------#
-#> #-----------------Inner loop Iteration 91 Done-----------------#
-#> #-----------------Inner loop Iteration 92 Done-----------------#
-#> #-----------------Inner loop Iteration 93 Done-----------------#
-#> #-----------------Inner loop Iteration 94 Done-----------------#
-#> #-----------------Inner loop Iteration 95 Done-----------------#
-#> #-----------------Inner loop Iteration 96 Done-----------------#
-#> #-----------------Inner loop Iteration 97 Done-----------------#
-#> #-----------------Inner loop Iteration 98 Done-----------------#
-#> #-----------------Inner loop Iteration 99 Done-----------------#
-#> Difference between alpha_old and alpha_new: 5.315896 
-#> Start estimating alpha:
-#> #-----------------Inner loop Iteration 1 Done-----------------#
-#> #-----------------Inner loop Iteration 2 Done-----------------#
-#> #-----------------Inner loop Iteration 3 Done-----------------#
-#> #-----------------Inner loop Iteration 4 Done-----------------#
-#> #-----------------Inner loop Iteration 5 Done-----------------#
-#> #-----------------Inner loop Iteration 6 Done-----------------#
-#> #-----------------Inner loop Iteration 7 Done-----------------#
-#> #-----------------Inner loop Iteration 8 Done-----------------#
-#> #-----------------Inner loop Iteration 9 Done-----------------#
-#> #-----------------Inner loop Iteration 10 Done-----------------#
-#> #-----------------Inner loop Iteration 11 Done-----------------#
-#> #-----------------Inner loop Iteration 12 Done-----------------#
-#> #-----------------Inner loop Iteration 13 Done-----------------#
-#> #-----------------Inner loop Iteration 14 Done-----------------#
-#> #-----------------Inner loop Iteration 15 Done-----------------#
-#> #-----------------Inner loop Iteration 16 Done-----------------#
-#> #-----------------Inner loop Iteration 17 Done-----------------#
-#> #-----------------Inner loop Iteration 18 Done-----------------#
-#> #-----------------Inner loop Iteration 19 Done-----------------#
-#> #-----------------Inner loop Iteration 20 Done-----------------#
-#> #-----------------Inner loop Iteration 21 Done-----------------#
-#> #-----------------Inner loop Iteration 22 Done-----------------#
-#> #-----------------Inner loop Iteration 23 Done-----------------#
-#> #-----------------Inner loop Iteration 24 Done-----------------#
-#> #-----------------Inner loop Iteration 25 Done-----------------#
-#> #-----------------Inner loop Iteration 26 Done-----------------#
-#> #-----------------Inner loop Iteration 27 Done-----------------#
-#> #-----------------Inner loop Iteration 28 Done-----------------#
-#> #-----------------Inner loop Iteration 29 Done-----------------#
-#> #-----------------Inner loop Iteration 30 Done-----------------#
-#> #-----------------Inner loop Iteration 31 Done-----------------#
-#> #-----------------Inner loop Iteration 32 Done-----------------#
-#> #-----------------Inner loop Iteration 33 Done-----------------#
-#> #-----------------Inner loop Iteration 34 Done-----------------#
-#> #-----------------Inner loop Iteration 35 Done-----------------#
-#> #-----------------Inner loop Iteration 36 Done-----------------#
-#> #-----------------Inner loop Iteration 37 Done-----------------#
-#> #-----------------Inner loop Iteration 38 Done-----------------#
-#> #-----------------Inner loop Iteration 39 Done-----------------#
-#> #-----------------Inner loop Iteration 40 Done-----------------#
-#> #-----------------Inner loop Iteration 41 Done-----------------#
-#> #-----------------Inner loop Iteration 42 Done-----------------#
-#> #-----------------Inner loop Iteration 43 Done-----------------#
-#> #-----------------Inner loop Iteration 44 Done-----------------#
-#> #-----------------Inner loop Iteration 45 Done-----------------#
-#> #-----------------Inner loop Iteration 46 Done-----------------#
-#> #-----------------Inner loop Iteration 47 Done-----------------#
-#> #-----------------Inner loop Iteration 48 Done-----------------#
-#> #-----------------Inner loop Iteration 49 Done-----------------#
-#> #-----------------Inner loop Iteration 50 Done-----------------#
-#> #-----------------Inner loop Iteration 51 Done-----------------#
-#> #-----------------Inner loop Iteration 52 Done-----------------#
-#> #-----------------Inner loop Iteration 53 Done-----------------#
-#> #-----------------Inner loop Iteration 54 Done-----------------#
-#> #-----------------Inner loop Iteration 55 Done-----------------#
-#> #-----------------Inner loop Iteration 56 Done-----------------#
-#> #-----------------Inner loop Iteration 57 Done-----------------#
-#> #-----------------Inner loop Iteration 58 Done-----------------#
-#> #-----------------Inner loop Iteration 59 Done-----------------#
-#> #-----------------Inner loop Iteration 60 Done-----------------#
-#> #-----------------Inner loop Iteration 61 Done-----------------#
-#> #-----------------Inner loop Iteration 62 Done-----------------#
-#> #-----------------Inner loop Iteration 63 Done-----------------#
-#> #-----------------Inner loop Iteration 64 Done-----------------#
-#> #-----------------Inner loop Iteration 65 Done-----------------#
-#> #-----------------Inner loop Iteration 66 Done-----------------#
-#> #-----------------Inner loop Iteration 67 Done-----------------#
-#> #-----------------Inner loop Iteration 68 Done-----------------#
-#> #-----------------Inner loop Iteration 69 Done-----------------#
-#> #-----------------Inner loop Iteration 70 Done-----------------#
-#> #-----------------Inner loop Iteration 71 Done-----------------#
-#> #-----------------Inner loop Iteration 72 Done-----------------#
-#> #-----------------Inner loop Iteration 73 Done-----------------#
-#> #-----------------Inner loop Iteration 74 Done-----------------#
-#> #-----------------Inner loop Iteration 75 Done-----------------#
-#> #-----------------Inner loop Iteration 76 Done-----------------#
-#> #-----------------Inner loop Iteration 77 Done-----------------#
-#> #-----------------Inner loop Iteration 78 Done-----------------#
-#> #-----------------Inner loop Iteration 79 Done-----------------#
-#> #-----------------Inner loop Iteration 80 Done-----------------#
-#> #-----------------Inner loop Iteration 81 Done-----------------#
-#> #-----------------Inner loop Iteration 82 Done-----------------#
-#> #-----------------Inner loop Iteration 83 Done-----------------#
-#> #-----------------Inner loop Iteration 84 Done-----------------#
-#> #-----------------Inner loop Iteration 85 Done-----------------#
-#> #-----------------Inner loop Iteration 86 Done-----------------#
-#> #-----------------Inner loop Iteration 87 Done-----------------#
-#> #-----------------Inner loop Iteration 88 Done-----------------#
-#> #-----------------Inner loop Iteration 89 Done-----------------#
-#> #-----------------Inner loop Iteration 90 Done-----------------#
-#> #-----------------Inner loop Iteration 91 Done-----------------#
-#> #-----------------Inner loop Iteration 92 Done-----------------#
-#> #-----------------Inner loop Iteration 93 Done-----------------#
-#> #-----------------Inner loop Iteration 94 Done-----------------#
-#> #-----------------Inner loop Iteration 95 Done-----------------#
-#> #-----------------Inner loop Iteration 96 Done-----------------#
-#> #-----------------Inner loop Iteration 97 Done-----------------#
-#> #-----------------Inner loop Iteration 98 Done-----------------#
-#> #-----------------Inner loop Iteration 99 Done-----------------#
-#> Difference between alpha_old and alpha_new: 15.0112 
-#> Start estimating alpha:
-#> #-----------------Inner loop Iteration 1 Done-----------------#
-#> #-----------------Inner loop Iteration 2 Done-----------------#
-#> Difference between alpha_old and alpha_new: 0.02443599 
-#> Start estimating alpha:
-#> #-----------------Inner loop Iteration 1 Done-----------------#
-#> Difference between alpha_old and alpha_new: 0.01153797 
-#> Start estimating alpha:
-#> #-----------------Inner loop Iteration 1 Done-----------------#
-#> Difference between alpha_old and alpha_new: 0.006091934 
-#> Start estimating alpha:
-#> #-----------------Inner loop Iteration 1 Done-----------------#
-#> Difference between alpha_old and alpha_new: 0.003214088 
-#> Start estimating alpha:
-#> #-----------------Inner loop Iteration 1 Done-----------------#
-#> Difference between alpha_old and alpha_new: 0.001696365 
-#> Start estimating alpha:
+#> ...
 #> Done!
 ```
 
