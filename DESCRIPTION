@@ -1,0 +1,29 @@
+Package: xtune
+Title: Regularized Regression with Feature-specific Penalties Integrating External Information
+Version: 0.99.0
+Authors@R: 
+  c(person(given = "Jingxuan",
+           family = "He",
+           role = c("aut", "cre"),
+           email = "hejingxu@usc.edu"),
+    person(given = "Chubing",
+           family = "Zeng",
+           role = "aut"))
+Description: Extends standard penalized regression (Lasso, Ridge, and Elastic-net) to allow feature-specific shrinkage based on external information with the goal of achieving a better prediction accuracy and variable selection. Examples of external information include the grouping of predictors, prior knowledge of biological importance, external p-values, function annotations, etc. The choice of multiple tuning parameters is done using an Empirical Bayes approach. A majorization-minimization algorithm is employed for implementation. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: glmnet, stats, crayon, selectiveInference, lbfgs
+Suggests: 
+    knitr,
+    numDeriv,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    covr,
+    pROC
+Depends:
+  R (>= 2.10)
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+VignetteBuilder: knitr
+Config/testthat/edition: 3
