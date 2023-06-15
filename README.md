@@ -5,9 +5,8 @@ xtune: Tuning feature-specific shrinkage parameters of penalized
 regression models based on external information
 
 <!-- badges: start -->
-
-[![R build
-status](https://github.com/rossellhayes/ipa/workflows/R-CMD-check/badge.svg)](https://github.com/rossellhayes/ipa/actions)
+`r rcompendium::add_github_actions_check()`
+`r rcompendium::add_github_actions_check_badge()`
 <!-- badges: end -->
 
 \=======
