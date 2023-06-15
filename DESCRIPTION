@@ -10,6 +10,7 @@ Authors@R:
            family = "Zeng",
            role = "aut"))
 Description: Extends standard penalized regression (Lasso, Ridge, and Elastic-net) to allow feature-specific shrinkage based on external information with the goal of achieving a better prediction accuracy and variable selection. Examples of external information include the grouping of predictors, prior knowledge of biological importance, external p-values, function annotations, etc. The choice of multiple tuning parameters is done using an Empirical Bayes approach. A majorization-minimization algorithm is employed for implementation. 
+URL: https://github.com/JingxuanH/xtune
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
