@@ -71,7 +71,7 @@ estimate the multiple tuning parameters. The individual penalties are
 interpreted as variance terms of the priors (exponential prior for
 Elastic-net) in a random effect formulation of penalized regressions. A
 majorization-minimization algorithm is employed for implementation. Once
-the tuning parameters \(\lambda\)s are estimated, and therefore the
+the tuning parameters $\lambda$ s are estimated, and therefore the
 penalties are known, phase (2) - estimating the regression coefficients
 is done using `glmnet`.
 
