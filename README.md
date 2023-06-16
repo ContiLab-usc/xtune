@@ -18,7 +18,7 @@ In standard regularized regression (Lasso, Ridge, and Elastic-net), a
 single penalty parameter $\lambda$ applied equally to all regression
 coefficients to control the amount of regularization in the model.
 
-Better prediction accuracy may be achieved by allowing a **differential
+Better prediction accuracy may be achieved by allowing a **different
 amount of shrinkage**. Ideally, we want to give a small penalty to
 important features and a large penalty to unimportant features. We guide
 the penalized regression model with external data **$Z$**  that are
@@ -46,7 +46,7 @@ Specifically, we use Elastic-net type of penalty:
 
 $$R(f) = \left[\sum_{k = 1}^K\bigg((1-c)||\beta_k||_2^2/2 + c||\beta_k||_1 \bigg) \right]$$
 
-when $c = 1, 0$ or any value between 0 to 1, the model is equivalent
+when $c = 1, 0$ or any value between 0 and 1, the model is equivalent
 to LASSO, Ridge, and Elastic-net, respectively.
 
 The idea of external data is that it provides us information on the
