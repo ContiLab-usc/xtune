@@ -134,7 +134,7 @@ citation("xtune")
 #>   }
 ```
 
-Feel free to contact [hejingxu@usc.edu](hejingxu@usc.edu) if you have
+Feel free to contact `hejingxu@usc.edu` if you have
 any questions.
 
 ## 📘 Examples
