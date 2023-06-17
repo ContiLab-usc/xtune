@@ -17,6 +17,7 @@ xtune.fit <- function(X, Y, Z, U, c, epsilon, sigma.square, alpha.est.init, maxs
         alpha.max = max(abs(colSums(X*as.vector(Y))))/ (c * n)
 
         ## start estimation
+        cat(yellow$italic$bold("Start estimating alpha:\n"))
         while(s < maxstep){
                 # Given alpha, update theta
                 lambda = exp(Z%*%alpha.old)
@@ -31,10 +32,9 @@ xtune.fit <- function(X, Y, Z, U, c, epsilon, sigma.square, alpha.est.init, maxs
                 }
 
                 # Given theta, update alpha
-                cat(yellow$italic$bold("Start estimating alpha:\n"))
                 update.result <- update_alpha.xtune(X, Y, Z,c=c, alpha.old = alpha.old, alpha.max = alpha.max, epsilon = epsilon,
                                                  sigma.square = sigma.square, theta = theta, maxstep_inner = maxstep_inner,
-                                                 margin_inner = margin_inner)
+                                                 margin_inner = margin_inner, verbosity = verbosity)
                 alpha.new <- update.result$alpha.est
 
                 # Check convergence
@@ -42,7 +42,6 @@ xtune.fit <- function(X, Y, Z, U, c, epsilon, sigma.square, alpha.est.init, maxs
                         cat(red$bold("Done!\n"))
                         break
                 }
-                cat("Difference between alpha_old and alpha_new:",sum(abs(alpha.new - alpha.old)),"\n")
                 alpha.old <- alpha.new
 
                 # Track iteration progress

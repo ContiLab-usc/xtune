@@ -13,6 +13,9 @@ estimateVariance(X, Y, n_rep = 5)
 
 \item{n_rep}{number of repeated estimation. Default is 10.}
 }
+\value{
+Estimated noise variance of X and Y.
+}
 \description{
 \code{estimateVariance} estimate noise variance.
 }

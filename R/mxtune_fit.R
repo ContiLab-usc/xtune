@@ -24,6 +24,7 @@ mxtune.fit <- function(X, Y, Z, U, c, epsilon, max_s, margin_s, alpha.est.init, 
         alpha.max = min(max(abs(a.max))/abs(ifelse(Z==0,0.01,Z)))
 
         ## start estimation
+        cat(yellow$italic$bold("Start estimating alpha:\n"))
         while (s < max_s){ # iteratively compute alpha and beta mode
           # Given alpha, update beta mode, Y hat etc
           lambda = exp(Z%*%alpha.est.old)
@@ -52,25 +53,26 @@ mxtune.fit <- function(X, Y, Z, U, c, epsilon, max_s, margin_s, alpha.est.init, 
           }
 
           # Given beta mode, Y hat etc, update alpha
-          cat(yellow$italic$bold("Start estimating alpha:\n"))
           alpha.est.new <- estimate.alpha.mxtune(X,Y_HAT,Z,c = c,B_inv,alpha.init = alpha.est.old, alpha.max,
                                           epsilon = epsilon,
                                           maxstep = maxstep,
                                           margin = margin,
                                           maxstep_inner = maxstep_inner,
                                           margin_inner = margin_inner,
-                                          compute.likelihood = F,verbosity = 1)
-          print(alpha.est.new)
+                                          compute.likelihood = F,verbosity = verbosity)
 
           # Check convergence
           if(sum(abs(alpha.est.new - alpha.est.old)) < margin_s ){
             cat(red$bold("Done!\n"))
             break
           }
-          cat("Difference between alpha_old and alpha_new:",sum(abs(alpha.est.new - alpha.est.old)),"\n")
-
           alpha.est.old <- alpha.est.new
-          cat(green$italic("#---"),green$bold("Outer loop Iteration",s,"Done"),green$italic("---#\n"),sep = "")
+
+          # Track iteration progress
+          if (verbosity == TRUE) {
+                  cat(green$italic("#---"),green$bold("Outer loop Iteration",s,"Done"),green$italic("---#\n"),sep = "")
+          }
+
           s <- s+1
         }
 

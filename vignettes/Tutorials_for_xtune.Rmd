@@ -174,7 +174,7 @@ Model fitting:
 ```{r}
 fit.multiclass = xtune(X = example.multiclass$X,Y=example.multiclass$Y,Z = example.multiclass$Z, U = example.multiclass$U, family  = "multiclass", c = 0.5)
 
-# chech the tunning parameter
+# check the tuning parameter
 fit.multiclass$penalty.vector
 ```
 

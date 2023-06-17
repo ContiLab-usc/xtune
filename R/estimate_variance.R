@@ -5,6 +5,7 @@
 #' @param Y continuous outcome vector of length \eqn{n}.
 #' @param n_rep number of repeated estimation. Default is 10.
 #' @details The \code{estimateSigma} function from \link{selectiveInference} is used repeatedly to estimate noise variance.
+#' @return Estimated noise variance of X and Y.
 #' @references Stephen Reid, Jerome Friedman, and Rob Tibshirani (2014). A study of error variance estimation in lasso regression. arXiv:1311.5274.
 #' @seealso \link{selectiveInference}
 #' @examples

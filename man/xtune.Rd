@@ -69,7 +69,7 @@ A majorization-minimization procedure is employed to fit \code{xtune}.
 }
 \examples{
 ## use simulated example data
-set.seed(7)
+set.seed(1234567)
 data(example)
 X <- example$X
 Y <- example$Y
@@ -89,8 +89,8 @@ fit.cv$lambda.min
 
 ## Feature-specific penalties based on external information Z:
 \donttest{
-#fit.diff <- xtune(X=X,Y=Y,Z=Z, family = "linear")
-#fit.diff$penalty.vector
+fit.diff <- xtune(X=X,Y=Y,Z=Z, family = "linear")
+fit.diff$penalty.vector
 }
 
 }

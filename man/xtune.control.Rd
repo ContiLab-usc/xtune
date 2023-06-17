@@ -41,6 +41,9 @@ xtune.control(
 
 \item{intercept}{Should intercept(s) be fitted (default=TRUE) or set to zero (FALSE), same as the intercept option in \code{glmnet}.}
 }
+\value{
+A list of control objects after the checking.
+}
 \description{
 Control function for \code{\link{xtune}} fitting.
 }

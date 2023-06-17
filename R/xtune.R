@@ -37,7 +37,7 @@
 #' @seealso \link{predict_xtune}, as well as \link{glmnet}.
 #' @examples
 #' ## use simulated example data
-#' set.seed(7)
+#' set.seed(1234567)
 #' data(example)
 #' X <- example$X
 #' Y <- example$Y
@@ -57,8 +57,8 @@
 #'
 #' ## Feature-specific penalties based on external information Z:
 #' \donttest{
-#' #fit.diff <- xtune(X=X,Y=Y,Z=Z, family = "linear")
-#' #fit.diff$penalty.vector
+#' fit.diff <- xtune(X=X,Y=Y,Z=Z, family = "linear")
+#' fit.diff$penalty.vector
 #' }
 #'
 #' @import glmnet crayon selectiveInference lbfgs
@@ -236,6 +236,7 @@ xtune <- function(X, Y, Z = NULL,U = NULL,
 #' @param verbosity Track algorithm update process? Default is FALSE.
 #' @param standardize Standardize X or not, same as the standardized option in \code{glmnet}.
 #' @param intercept Should intercept(s) be fitted (default=TRUE) or set to zero (FALSE), same as the intercept option in \code{glmnet}.
+#' @return A list of control objects after the checking.
 #' @export
 #'
 xtune.control <- function(alpha.est.init = NULL, max_s = 20 ,margin_s = 0.00001, maxstep = 100, margin = 0.001,

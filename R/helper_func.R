@@ -16,7 +16,7 @@ approx_likelihood.xtune <- function(to_estimate, input_X, input_Y, input_Z, sigm
 }
 
 update_alpha.xtune <- function(X, Y, Z,c,alpha.old, alpha.max, epsilon, sigma.square, theta, maxstep_inner,
-                            margin_inner) {
+                            margin_inner, verbosity) {
   ## initial
   alpha.inner.old = alpha.old
   k_inner = 1
@@ -38,7 +38,10 @@ update_alpha.xtune <- function(X, Y, Z,c,alpha.old, alpha.max, epsilon, sigma.sq
     if (sum(abs(alpha.inner.new - alpha.inner.old)) < margin_inner) {
       break
     }
-    cat(blue$italic("#-----------------"),magenta("Inner loop Iteration",k_inner,"Done"),blue$italic("-----------------#\n"),sep = "")
+
+    if (verbosity == TRUE) {
+      cat(blue$italic("#-----------------"),magenta("Inner loop Iteration",k_inner,"Done"),blue$italic("-----------------#\n"),sep = "")
+    }
     k_inner = k_inner + 1
     alpha.inner.old <- alpha.inner.new
   }
@@ -118,7 +121,10 @@ estimate.alpha.mxtune <- function(X,Y,Z,c,B_inv,
       break
     }
     alpha.old <- alpha.new
-    cat(blue$italic("#-----------------"),magenta("Inner loop Iteration",itr,"Done"),blue$italic("-----------------#\n"),sep = "")
+
+    if (verbosity == TRUE) {
+      cat(blue$italic("#-----------------"),magenta("Inner loop Iteration",itr,"Done"),blue$italic("-----------------#\n"),sep = "")
+    }
     itr <- itr+1
 
   }
