@@ -22,9 +22,9 @@ This vignette is a tutorial on how to use the `xtune` package to fit feature-spe
 In this tutorial the following points are going to be viewed: 
 
 * The overall idea of `xtune` model
-* Three examples of external information Z
+* Three examples of external information $Z$
 * How to fit the model
-* Two special cases of Z
+* Two special cases of $Z$
 
 ### `xtune` Overview
 The main usage of `xtune` is to tune multiple shrinkage parameters in regularized regressions (Lasso, Ridge, and Elastic-net), based on external information. 
